@@ -5,7 +5,7 @@ export default class RecipeSearch extends Component {
         return (
             <div>
                 <React.Fragment>
-                    Hello From Recipe Search
+                   <h1> Hello From Recipe Search</h1>
                 </React.Fragment>
             </div>
         )
