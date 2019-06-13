@@ -9,8 +9,11 @@ class App extends React.Component {
   state = {
     recipes: recipes,
     url: 'https://www.food2fork.com/api/search?key=4d39ee35f73e035b1879339d3d68fa59',
+    base_url:"https://www.food2fork.com/api/search?key=4d39ee35f73e035b1879339d3d68fa59",
     details_id:35382,
-    pageIndex: 0
+    pageIndex: 1,
+    search:"",
+    query:'&q='
   };
 
   // async getRecipes() {
@@ -37,6 +40,9 @@ class App extends React.Component {
         return <RecipeList 
         recipes={this.state.recipes}
         handleDetails={this.handleDetails}
+        value={this.state.search}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
         />;
       case 0:
         return <RecipeDetails 
@@ -57,6 +63,24 @@ class App extends React.Component {
         pageIndex:index,
         details_id: id
       })
+  }
+
+  handleChange = (e) => {
+    this.setState({search: e.target.value}, ()=>{
+      console.log(this.state.search)
+    })
+    
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const{base_url, query,search} = this.state
+    
+    this.setState(()=>{
+      return{url:`${base_url}${query}${search}`, search:""}
+    },()=>{
+      this.getRecipes()
+    })
   }
 
   
