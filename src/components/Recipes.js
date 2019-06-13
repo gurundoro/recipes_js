@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Recipes extends Component {
     render() {
-        console.log(this.props)
+        
         const {
             image_url, 
             title,
@@ -10,6 +10,8 @@ export default class Recipes extends Component {
             publisher,
             recipe_id
         } = this.props.recipe
+
+        const {handleDetails} = this.props
         
         return (
             <React.Fragment>
@@ -26,7 +28,10 @@ export default class Recipes extends Component {
                </h6>
                </div>
                <div className="card-footer">
-               <button type="button" className="btn btn-primary text-capitalize">Details
+               <button 
+               type="button" 
+               className="btn btn-primary text-capitalize"
+               onClick={handleDetails}>Details
                </button>
                <a 
                href={source_url} 
